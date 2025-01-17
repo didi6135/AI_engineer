@@ -39,7 +39,7 @@ def update_params(matrix, y, weight, bias, LR, lambda_reg):
     return weight, bias
 
 
-def ridge_regression(matrix, y, lambda_reg=0.1, learning_rate=0.001, epochs=1000):
+def ridge_regression(matrix, y, lambda_reg=10, learning_rate=0.001, epochs=1000):
 
     length_futures = matrix.shape[1]
     errors = []
