@@ -36,7 +36,7 @@ def lasso(matrix, y, alpha, learning_rate, epochs):
 def predict(matrix, weights):
     return matrix.dot(weights)
 
-X, y = make_regression(n_samples=100, n_features=1, noise=10, random_state=42)
+X, y = make_regression(n_samples=10, n_features=4, noise=10, random_state=42)
 alpha = 0.1
 learning_rate = 0.01
 epochs = 1000

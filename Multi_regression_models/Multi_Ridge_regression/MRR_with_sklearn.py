@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
-from sklearn.datasets import make_regression
+from sklearn.datasets import make_regression, fetch_california_housing
 from sklearn.linear_model import Ridge
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 
-x, y = make_regression(n_samples=100, n_features=4, noise=1, random_state=42)
+x, y = fetch_california_housing(return_X_y=True)
 # plt.plot(x, y, 'o', color='blue')
 # plt.show()
 
@@ -17,11 +17,9 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(x_train)
 X_test = scaler.fit_transform(x_test)
 
-model = Ridge()
+model = Ridge(max_iter=5000)
 model.fit(x_train, y_train)
 
-# y_pred = model.predict(x_test)
-# print("Predicted values:", mean_squared_error(y_test, y_pred))
 
 
 param_grid = {
@@ -34,6 +32,7 @@ model_cv = GridSearchCV(
     param_grid=param_grid,
     cv=5,
     n_jobs=-1
+
 )
 
 
@@ -49,8 +48,10 @@ print("Best Model:", best_model)
 
 # Step 8: Evaluate the best model
 y_pred = best_model.predict(X_test)
+mae = mean_absolute_error(y_test, y_pred)
 mse = mean_squared_error(y_test, y_pred)
 print("Mean Squared Error (MSE) on Test Data:", mse)
+print("Mean Absolute Error (MAE) on Test Data:", mae)
 
 # Step 9: Visualize predictions vs true values
 plt.scatter(y_test, y_pred, color='blue', alpha=0.7)

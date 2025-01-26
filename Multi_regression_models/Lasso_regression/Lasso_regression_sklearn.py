@@ -1,12 +1,12 @@
 from sklearn.datasets import make_regression
 from sklearn.linear_model import Lasso
-from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, GridSearchCV
 import matplotlib.pyplot as plt
 
 
 
-x, y = make_regression(n_samples=100, n_features=1, noise=10, random_state=42)
+x, y = make_regression(n_samples=100, n_features=4, noise=10, random_state=42)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
 
@@ -29,10 +29,7 @@ print("Best Model:", best_model)
 
 y_pred = best_model.predict(x_test)
 mse = mean_squared_error(y_test, y_pred)
-mae = mean_absolute_error(y_test, y_pred)
-
 print("Mean Squared Error (MSE) on Test Data:", mse)
-print("Mean Absolute Error (MAE) on Test Data:", mae)
 
 # Step 9: Visualize predictions vs true values
 plt.scatter(y_test, y_pred, color='blue', alpha=0.7)
