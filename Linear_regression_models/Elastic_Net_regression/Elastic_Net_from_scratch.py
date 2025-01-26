@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import matplotlib.pyplot as plt
 
-X, y = make_regression(n_samples=100, n_features=4, random_state=42, noise=10)
+X, y = make_regression(n_samples=100, n_features=1, random_state=42, noise=10)
 
 alpha = 0.1
 rho = 0.5  # Balance between L1 and L2
